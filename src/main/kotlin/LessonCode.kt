@@ -37,6 +37,8 @@ fun main(args: Array<String>) {
     for (item in shopping) println(item)
     if (shopping.contains("Milk")) println(shopping.indexOf("Milk"))
 
+//    shopping.forEach()
+
     val mShopping = mutableListOf("Tea", "Eggs")
     mShopping.add(1, "Milk")
     mShopping.set(0, "Tea")
@@ -68,6 +70,8 @@ fun main(args: Array<String>) {
     for (item in friendSet) println("$item ")
 
     //TODO корзины в Set стр. 297
+
+
 
     //mutableSet
 
@@ -163,4 +167,39 @@ fun main(args: Array<String>) {
 
     if (mRecipeMap.size > mRecipeMap.values.toSet().size) println("Yes") else println("No duplicates")
 
+}
+
+//TODO
+// Реализовать класс SlavaMutableSet Стрингов, имплементирующий Collection и мс ним можно было работать аналогично обычному MutableSet
+// (будет метод добавления строки, контейнс, ремув, корректная работа forEach())
+// реализовать тест сравнения работы  SlavaMutableSet с обычным MutableSet в main
+
+// 1. без оптимизации: использование только eqals, вообще не трогаем HashCode (SlavaMutableSet) //до среды!!!
+// 2.* реализация добавить оптимизацию с использованием корзин HashCode (SlavaMutableHashSet)
+
+//сами элементы, которые будут добавляться, будут храниться в коллекции MutableList
+
+class SlavaMutableSet : Collection<String>{
+    override val size: Int
+        get() = TODO("Not yet implemented")
+
+    override fun isEmpty(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun iterator(): Iterator<String> {
+        TODO("Not yet implemented")
+    }
+
+    override fun containsAll(elements: Collection<String>): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun contains(element: String): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    fun add(element: String){
+
+    }
 }

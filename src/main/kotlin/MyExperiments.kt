@@ -25,4 +25,17 @@ fun main() {
     val test6 = Test3("A")
     println("${test5.hashCode()} ${test6.hashCode()}")
     println(test5 == test6)
+
+    val mMap = mutableMapOf("m1" to 1, "m2" to 2)
+    val mList = mMap.toList()
+    println("mList.get(0).second: ${mList[0].second}")
+    val mListOfValues = mMap.values.toList()
+    for (item in mListOfValues) print("$item ")
+//    println("${mList[0]*2}")
+    val x = 0
+    val x2 = mListOfValues[x] * 2
+    println(x2)
+
+    //TODO как работать с Map, преобразованной в List
+    //TODO Что сидит в List
 }
