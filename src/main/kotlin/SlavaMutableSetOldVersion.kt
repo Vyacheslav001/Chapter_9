@@ -7,66 +7,69 @@
 //TODO 1. без оптимизации: использование только equals, вообще не трогаем HashCode (SlavaMutableSet) //до среды!!!
 //TODO 2.* реализация добавить оптимизацию с использованием корзин HashCode (SlavaMutableHashSet). //до субботы!!!
 
-class SlavaMutableSet : MutableSet<String> {
+class SlavaMutableSetOldVersion : Collection<String> {
     private val list: MutableList<String> = ArrayList()
 
     override val size: Int
         get() = list.size
 
     override fun containsAll(elements: Collection<String>): Boolean {
-        //с учетом замечания:
+        var count = 0
         for (item in elements) {
-            if (!list.contains(item)) {
-                return false
+            if (list.contains(item)) {
+                count++
             }
         }
-        return true
-        //ЛИБО: return list.containsAll(elements) (с использованием метода листа)
+        if (count == elements.size) {
+            return true
+        }
+        return false
     }
 
     override fun isEmpty(): Boolean {
-        return list.isEmpty()
+        if (list.isEmpty()) return true
+        return false
     }
 
-    override fun iterator(): MutableIterator<String> {
+    override fun iterator(): Iterator<String> {
         return list.iterator()
     }
 
-    override fun retainAll(elements: Collection<String>): Boolean {
-        return list.retainAll(elements)
-    }
-
-    override fun removeAll(elements: Collection<String>): Boolean {
-        return list.removeAll(elements)
-    }
-
     override fun contains(element: String): Boolean {
-        return list.contains(element)
-    }
-
-    override fun add(element: String): Boolean {
-        if (!contains(element)) {
-            list.add(element)
-            return true
-        }
-        return false
-    }
-
-    override fun addAll(elements: Collection<String>): Boolean {
-        if (!containsAll(elements)) {
-            elements.forEach {
-                add(it)
+        for (item in list)
+            if (element == item) {
+                return true
             }
-            return true
-        }
         return false
     }
 
-    override fun remove(element: String): Boolean {
-        return list.remove(element)
+    private fun add(element: String) {
+        when {
+            list.isEmpty() -> list.add(element)
+            else -> if (!contains(element)) {
+                list.add(element)
+            }
+        }
     }
 
-    override fun clear() {
-        list.clear()
+    fun addAll(elements: Collection<String>) {
+        for (item in elements) {
+            add(item)
+        }
     }
+
+    fun remove(element: String) {
+        for (item in list) {
+            if (item == element) {
+                list.remove(item)
+                break
+            }
+        }
+    }
+
+//    fun clear(){
+//        for (item in list){
+//            list.remove(item)
+//        }
+//    }
 }
