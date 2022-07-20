@@ -35,7 +35,22 @@ fun main() {
     val x = 0
     val x2 = mListOfValues[x] * 2
     println(x2)
+    println("---------------------")
 
     //TODO как работать с Map, преобразованной в List
     //TODO Что сидит в List
+
+    val numbers = listOf("one", "two", "three", "four")
+    val numbersIterator = numbers.iterator()
+    while (numbersIterator.hasNext()) {
+        print("${numbersIterator.next()} ")
+    }
+    println()
+
+    val mNumbers = mutableListOf("one", "two", "three", "four")
+    val mutableIterator = mNumbers.iterator()
+
+    mutableIterator.next()
+    mutableIterator.remove()
+    println("After removal: $numbers ")
 }
