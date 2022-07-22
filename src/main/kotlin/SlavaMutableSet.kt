@@ -13,6 +13,24 @@ class SlavaMutableSet : MutableSet<String> {
     override val size: Int
         get() = list.size
 
+    override fun add(element: String): Boolean {
+        if (!contains(element)) {
+            list.add(element)
+            return true
+        }
+        return false
+    }
+
+    override fun addAll(elements: Collection<String>): Boolean {
+        if (!containsAll(elements)) {
+            elements.forEach {
+                add(it)
+            }
+            return true
+        }
+        return false
+    }
+
     override fun containsAll(elements: Collection<String>): Boolean {
         //с учетом замечания:
         for (item in elements) {
@@ -42,24 +60,6 @@ class SlavaMutableSet : MutableSet<String> {
 
     override fun contains(element: String): Boolean {
         return list.contains(element)
-    }
-
-    override fun add(element: String): Boolean {
-        if (!contains(element)) {
-            list.add(element)
-            return true
-        }
-        return false
-    }
-
-    override fun addAll(elements: Collection<String>): Boolean {
-        if (!containsAll(elements)) {
-            elements.forEach {
-                add(it)
-            }
-            return true
-        }
-        return false
     }
 
     override fun remove(element: String): Boolean {
